@@ -13,13 +13,15 @@ namespace SebastianBergmann\FileIterator;
 class Facade
 {
     /**
-     * @param array|string $paths
-     * @param array|string $suffixes
-     * @param array|string $prefixes
-     * @param array        $exclude
+     * Thực hiện đọc đường dẫn các file trong một hoặc nhiều đường dẫn thư mục
+     *
+     * @param array|string $paths Một hoặc nhiều đường dẫn
+     * @param array|string $suffixes Lọc theo hậu tố chưa ký tự hoặc tập ký tự
+     * @param array|string $prefixes Lọc theo tiền tố chứa ký tự hoặc tập ký tự
+     * @param array        $exclude : Loại trừ các đường dẫn
      * @param bool         $commonPath
      *
-     * @return array
+     * @return array Danh sách các file
      */
     public function getFilesAsArray($paths, $suffixes = '', $prefixes = '', array $exclude = [], bool $commonPath = false): array
     {
@@ -60,6 +62,12 @@ class Facade
         return $files;
     }
 
+    /**
+     *
+     * Lấy đường dẫn chung của các files
+     * @param array $files
+     * @return string
+     */
     protected function getCommonPath(array $files): string
     {
         $count = \count($files);

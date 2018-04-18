@@ -13,6 +13,8 @@ namespace SebastianBergmann\FileIterator;
 class Factory
 {
     /**
+     *
+     * Lấy ra Iterator để duyệt file với điều kiện đầu vào
      * @param array|string $paths
      * @param array|string $suffixes
      * @param array|string $prefixes
@@ -28,7 +30,6 @@ class Factory
 
         $paths   = $this->getPathsAfterResolvingWildcards($paths);
         $exclude = $this->getPathsAfterResolvingWildcards($exclude);
-
         if (\is_string($prefixes)) {
             if ($prefixes !== '') {
                 $prefixes = [$prefixes];
@@ -66,6 +67,10 @@ class Factory
         return $iterator;
     }
 
+    /**
+     * @param array $paths
+     * @return array
+     */
     protected function getPathsAfterResolvingWildcards(array $paths): array
     {
         $_paths = [];

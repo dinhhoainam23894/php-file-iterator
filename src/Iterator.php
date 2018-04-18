@@ -66,6 +66,10 @@ class Iterator extends \FilterIterator
         parent::__construct($iterator);
     }
 
+    /**
+     * Kiểm tra điều kiện đầu vào được chấp nhận hay không
+     * @return bool
+     */
     public function accept()
     {
         $current  = $this->getInnerIterator()->current();
@@ -86,8 +90,14 @@ class Iterator extends \FilterIterator
                $this->acceptSuffix($filename);
     }
 
+    /**
+     * Kiểm tra theo đường dẫn
+     * @param string $path
+     * @return bool
+     */
     private function acceptPath(string $path): bool
     {
+//        print_r($this->exclude);
         foreach ($this->exclude as $exclude) {
             if (\strpos($path, $exclude) === 0) {
                 return false;
@@ -97,16 +107,34 @@ class Iterator extends \FilterIterator
         return true;
     }
 
+    /**
+     * Kiểm tra theo tiền tố
+     * @param string $filename
+     * @return bool
+     */
     private function acceptPrefix(string $filename): bool
     {
         return $this->acceptSubString($filename, $this->prefixes, self::PREFIX);
     }
 
+    /**
+     * Kiểm tra với theo hậu tố
+     * @param string $filename
+     * @return bool
+     */
     private function acceptSuffix(string $filename): bool
     {
         return $this->acceptSubString($filename, $this->suffixes, self::SUFFIX);
     }
 
+    /**
+     *
+     * Kiểm tra với một chuỗi con
+     * @param string $filename
+     * @param array $subStrings
+     * @param int $type
+     * @return bool
+     */
     private function acceptSubString(string $filename, array $subStrings, int $type): bool
     {
         if (empty($subStrings)) {
