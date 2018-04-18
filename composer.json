@@ -26,6 +26,12 @@
             "src/"
         ]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/",
+            "SebastianBergmann\\" : "src/"
+        }
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "2.0.x-dev"
